@@ -9,7 +9,7 @@ set shiftwidth=2
 nnoremap <c-s> <cmd>:w<CR>
 inoremap <c-s> <esc> :w <CR> hi
 
-" Yank from cursor until EOF
+" Yank from cursor until EOL
 nnoremap Y y$
 
 " Escape insert mode
