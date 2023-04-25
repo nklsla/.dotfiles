@@ -9,7 +9,8 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 # Kubernetes
-alias kp="kubectl get pods -A -o wide"
+alias kp="kubectl get pods -o wide"
+alias kpp="kubectl get pods -A -o wide"
 alias kn="kubectl get nodes -A -o wide"
 alias k=kubectl
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
@@ -29,3 +30,7 @@ xmodmap -e "keycode 66 = End"
 # SSH custom colors
 # Set colors in ~/.ssh/config
 ssh() {/usr/bin/ssh "$@"; konsoleprofile ColorScheme=Breath  }
+
+# Sudoedit
+export EDITOR=vim
+alias sudoe="sudoedit @$"
