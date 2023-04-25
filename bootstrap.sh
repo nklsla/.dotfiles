@@ -40,8 +40,11 @@ if [[ "$OS" == "ubuntu" ]]; then
     move_and_link_file $HOME/.bashrc
 fi
 
-# vim is always present
-move_and_link_file $HOME/.vimrc
-# add for sudoedits
-sudo ln -s "$(pwd)/.vimrc" /root/.vimrc
+if command -v vim >/dev/null 2>&1; then
+  move_and_link_file $HOME/.vimrc
+  # Add for sudoedits
+  sudo ln -s "$(pwd)/.vimrc" /root/.vimrc
+else
+  echo "Vim is not installed"
+fi
 
