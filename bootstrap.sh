@@ -1,14 +1,14 @@
 #!/bin/bash
 # Create symlinks and replace old files
 
-# Define variables
-OS="$(cat /etc/os-release | grep -E "^ID=" | cut -d= -f2- | tr -d '"')"
+# Get distro
+dist="$(cat /etc/os-release | grep -E "^ID=" | cut -d= -f2- | tr -d '"')"
 
 # Define functions
 move_and_link_file(){
     # Define variables
     file="$1"
-    folder="$HOME/.dotfiles.old"
+    folder="$(pwd)/.dotfiles.old"
     file_replace=$(basename $file)
 
     # Check if file exsists
@@ -28,14 +28,14 @@ move_and_link_file(){
 }
 
 # Manjaro
-if [[ "$OS" == "manjaro" ]]; then
+if [[ "$dist" == "manjaro" ]]; then
     # zshrc
     move_and_link_file $HOME/.zshrc
 
 fi
 
 # Ubuntu
-if [[ "$OS" == "ubuntu" ]]; then
+if [[ "$dist" == "ubuntu" ]]; then
     # bashrc
     move_and_link_file $HOME/.bashrc
 fi
@@ -45,6 +45,6 @@ if command -v vim >/dev/null 2>&1; then
   # Add for sudoedits
   sudo ln -s "$(pwd)/.vimrc" /root/.vimrc
 else
-  echo "Vim is not installed"
+  echo "Vim is not installed!"
 fi
 
