@@ -8,6 +8,7 @@ fi
 if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
+
 # Kubernetes
 alias kp="kubectl get pods -o wide"
 alias kpp="kubectl get pods -A -o wide"
@@ -19,7 +20,7 @@ alias k=kubectl
 alias l=ls
 alias ll="ls -lha"
 
-# SSH
+# SSH - add private key
 eval "$(ssh-agent)" 1>/dev/null
 ssh-add -q /home/nkls/.ssh/github 
 
