@@ -134,5 +134,5 @@ complete -F __start_kubectl k
 
 # SSH
 eval "$(ssh-agent)" 1>/dev/null
-ssh-add -q /home/nkls/.ssh/github 
+ssh-add -q ~/.ssh/github 
 
