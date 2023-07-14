@@ -6,14 +6,17 @@ set tabstop=2
 set shiftwidth=2
 :colorscheme murphy
 :filetype on
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_winsize=80
 
 " Unmap Help shortcut
 map <F1> <nop>
 imap <F1> <nop>
 
 " Toggle file explorer
-noremap <silent> <F2> :call ToggleNetrw() \| vertical resize 35<CR>
-noremap <silent> <C-E> :call ToggleNetrw() \| vertical resize 35<CR>
+noremap <silent> <F2> <CMD>:Lexplore \| vertical resize 35<CR>
+noremap <silent> <C-E> <CMD>:Lexplore \| vertical resize 35<CR>
 
 " Save with ctrl-s
 nnoremap <c-s> <cmd>:w<CR>
@@ -45,22 +48,3 @@ noremap <c-down> <c-w>-
 noremap <c-left> <c-w>>
 noremap <c-right> <c-w><
 
-
-" Toggle file expolorer
-let g:NetrwIsOpen=0
-
-function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i 
-            endif
-            let i-=1
-        endwhile
-        let g:NetrwIsOpen=0
-    else
-        let g:NetrwIsOpen=1
-        silent Lexplore
-    endif
-endfunction
