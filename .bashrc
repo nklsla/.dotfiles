@@ -140,5 +140,7 @@ eval "$(ssh-agent)" 1>/dev/null
 ssh-add -q ~/.ssh/github 
 
 # Docker
-alias d=docker
-source .dockerautocomplete_bash
+if [[ $commands[docker] ]]; then
+  alias d=docker
+  source .dockerautocomplete_bash
+fi
