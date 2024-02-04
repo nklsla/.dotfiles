@@ -28,7 +28,7 @@ if [[ $commands[kubectl] ]]; then
 # Docker
 if [[ $commands[docker] ]]; then
   alias d=docker
-  source .dockerautocomplete_zsh
+  source ~/.dotfiles/.dockerautocomplete_zsh
 fi
 # alias d=docker
 # source .dockerautocomplete_zsh

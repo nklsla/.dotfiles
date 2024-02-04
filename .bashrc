@@ -142,5 +142,5 @@ ssh-add -q ~/.ssh/github
 # Docker
 if [[ $commands[docker] ]]; then
   alias d=docker
-  source .dockerautocomplete_bash
+  source ~/.dotfiles/.dockerautocomplete_bash
 fi
