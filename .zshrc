@@ -10,15 +10,28 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
 fi
 
 # Kubernetes
-alias kp="kubectl get pods -o wide"
-alias kpp="kubectl get pods -A -o wide"
-alias kn="kubectl get nodes -A -o wide"
-alias k=kubectl
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+if [[ $commands[kubectl] ]]; then
+  source <(kubectl completion zsh)
+  alias kn="kubectl get nodes -n -all -o wide"
+  alias kpp="kubectl get pods -A -o wide"
+  alias kppe="kubectl get pods -A -o wide | grep -v Running"
+  alias kp="kubectl get pods -o wide"
+  alias kd="kubectl describe"
+  alias k=kubectl
+ fi
+# [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+# alias kp="kubectl get pods -o wide"
+# alias kpp="kubectl get pods -A -o wide"
+# alias kn="kubectl get nodes -A -o wide"
+# alias k=kubectl
 
 # Docker
-alias d=docker
-source .dockerautocomplete_zsh
+if [[ $commands[docker] ]]; then
+  alias d=docker
+  source .dockerautocomplete_zsh
+fi
+# alias d=docker
+# source .dockerautocomplete_zsh
 
 # Default
 alias l=ls

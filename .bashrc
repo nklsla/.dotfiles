@@ -121,13 +121,16 @@ export EDITOR=vim
 alias sudoe="sudo -E $EDITOR $@"
 
 # Kubernetes
-alias kn="kubectl get nodes -n -all -o wide"
-alias kpp="kubectl get pods -A -o wide"
-alias kppe="kubectl get pods -A -o wide | grep -v Running"
-alias kp="kubectl get pods -o wide"
-alias kd="kubectl describe"
-alias k=kubectl
-
+if [[ $commands[kubectl] ]]; then
+  source <(kubectl completion bash)
+  complete -F __start_kubectl k
+    alias kn="kubectl get nodes -n -all -o wide"
+    alias kpp="kubectl get pods -A -o wide"
+    alias kppe="kubectl get pods -A -o wide | grep -v Running"
+    alias kp="kubectl get pods -o wide"
+    alias kd="kubectl describe"
+    alias k=kubectl
+fi
 
 source <(kubectl completion bash)
 complete -F __start_kubectl k
