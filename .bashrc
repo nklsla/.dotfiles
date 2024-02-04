@@ -123,6 +123,7 @@ alias sudoe="sudo -E $EDITOR $@"
 # Kubernetes
 alias kn="kubectl get nodes -n -all -o wide"
 alias kpp="kubectl get pods -A -o wide"
+alias kppe="kubectl get pods -A -o wide | grep -v Running"
 alias kp="kubectl get pods -o wide"
 alias kd="kubectl describe"
 alias k=kubectl
@@ -133,7 +134,7 @@ complete -F __start_kubectl k
 
 # SSH
 eval "$(ssh-agent)" 1>/dev/null
-ssh-add -q /home/nkls/.ssh/github 
+ssh-add -q ~/.ssh/github 
 
 # Docker
 alias d=docker

@@ -6,6 +6,17 @@ set tabstop=2
 set shiftwidth=2
 :colorscheme murphy
 :filetype on
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_winsize=80
+
+" Unmap Help shortcut
+map <F1> <nop>
+imap <F1> <nop>
+
+" Toggle file explorer
+noremap <silent> <F2> <CMD>:Lexplore \| vertical resize 35<CR>
+noremap <silent> <C-E> <CMD>:Lexplore \| vertical resize 35<CR>
 
 " Save with ctrl-s
 nnoremap <c-s> <cmd>:w<CR>
@@ -36,3 +47,4 @@ noremap <c-up> <c-w>+
 noremap <c-down> <c-w>-
 noremap <c-left> <c-w>>
 noremap <c-right> <c-w><
+
