@@ -16,6 +16,10 @@ alias kn="kubectl get nodes -A -o wide"
 alias k=kubectl
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
+# Docker
+alias d=docker
+source .dockerautocomplete_zsh
+
 # Default
 alias l=ls
 alias ll="ls -lha"
