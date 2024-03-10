@@ -144,3 +144,6 @@ if [[ $commands[docker] ]]; then
   alias d=docker
   source ~/.dotfiles/.dockerautocomplete_bash
 fi
+
+# Adding space to watch enables explansion of aliases in command
+alias watch='watch '
