@@ -52,3 +52,5 @@ ssh() {/usr/bin/ssh "$@"; konsoleprofile ColorScheme=Breath  }
 # Sudoedit
 export EDITOR=vim
 alias sudoe="sudoedit @$"
+
+alias logout="qdbus org.kde.Shutdown /Shutdown logout"
