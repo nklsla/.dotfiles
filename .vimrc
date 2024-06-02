@@ -4,6 +4,8 @@ set relativenumber
 set expandtab
 set tabstop=2
 set shiftwidth=2
+set autoindent
+set scrolloff=8
 :colorscheme murphy
 :filetype on
 let g:netrw_altv=1
@@ -22,7 +24,7 @@ noremap <silent> <C-E> <CMD>:Lexplore \| vertical resize 35<CR>
 nnoremap <c-s> <cmd>:w<CR>
 inoremap <c-s> <esc> :w <CR> hi
 
-" Yank from cursor until EOF
+" Yank from cursor until EOL
 nnoremap Y y$
 
 " Paste without overwriting clipboard
@@ -30,6 +32,9 @@ vnoremap p "_dp
 
 " Escape insert mode
 inoremap jj <esc>
+
+" Reverse-indent, dent?
+inoremap <S-Tab> <C-d>
 
 " Speed jump
 noremap J 3j
