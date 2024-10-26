@@ -147,3 +147,4 @@ fi
 
 # Adding space to watch enables explansion of aliases in command
 alias watch='watch '
+. "$HOME/.cargo/env"
