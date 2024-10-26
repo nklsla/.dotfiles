@@ -31,7 +31,6 @@ move_and_link_file(){
 if [[ "$dist" == "manjaro" ]]; then
     # zshrc
     move_and_link_file $HOME/.zshrc
-
 fi
 
 # Ubuntu
