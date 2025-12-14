@@ -42,8 +42,9 @@ eval "$(ssh-agent)" 1>/dev/null
 ssh-add -q /home/nkls/.ssh/github 
 
 # Disable capslock and remap button to 'End'
-setxkbmap -option caps:none
-xmodmap -e "keycode 66 = End"
+# Temporary removed, use 'keyd' for Wayland instead
+#setxkbmap -option caps:none
+#xmodmap -e "keycode 66 = End"
 
 # SSH custom colors
 # Set colors in ~/.ssh/config
