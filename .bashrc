@@ -137,7 +137,15 @@ complete -F __start_kubectl k
 
 # SSH
 eval "$(ssh-agent)" 1>/dev/null
-ssh-add -q ~/.ssh/github 
+# Loop through all files in the directory
+for file in ~/.ssh/*; do
+  # Check if the file does not end with .pub
+  if [[ ! $file == *.pub ]] && [[ ! $file == *config ]] && [[ ! $file == *known_hosts* ]]; then
+    # Add the file to the SSH agent
+    ssh-add "$file"
+    # ssh-add -q "$file"
+  fi
+done
 
 # Docker
 if [[ $commands[docker] ]]; then
@@ -147,3 +155,4 @@ fi
 
 # Adding space to watch enables explansion of aliases in command
 alias watch='watch '
+. "$HOME/.cargo/env"
