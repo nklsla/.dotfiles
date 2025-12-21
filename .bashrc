@@ -121,7 +121,8 @@ export EDITOR=vim
 alias sudoe="sudo -E $EDITOR $@"
 
 # Kubernetes
-if [[ $commands[kubectl] ]]; then
+#if [[ $commands[kubectl] ]]; then
+if commadn -v kubectl >/dev/null 2>&1;then
   source <(kubectl completion bash)
   complete -F __start_kubectl k
     alias kn="kubectl get nodes -n -all -o wide"
@@ -130,11 +131,11 @@ if [[ $commands[kubectl] ]]; then
     alias kp="kubectl get pods -o wide"
     alias kd="kubectl describe"
     alias k=kubectl
+
+  source <(kubectl completion bash)
+  complete -F __start_kubectl k
+
 fi
-
-source <(kubectl completion bash)
-complete -F __start_kubectl k
-
 # SSH
 eval "$(ssh-agent)" 1>/dev/null
 # Loop through all files in the directory
@@ -148,11 +149,16 @@ for file in ~/.ssh/*; do
 done
 
 # Docker
-if [[ $commands[docker] ]]; then
+#if [[ $commands[docker] ]]; then
+if commadn -v docker >/dev/null 2>&1;then
   alias d=docker
   source ~/.dotfiles/.dockerautocomplete_bash
 fi
 
 # Adding space to watch enables explansion of aliases in command
 alias watch='watch '
-. "$HOME/.cargo/env"
+
+if [[ -f "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
+
