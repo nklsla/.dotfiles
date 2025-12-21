@@ -39,7 +39,7 @@ move_and_link_file() {
 
     # Create symlink
     sudo ln -sfn "$source_file" "$target_file"
-    echo "Linked $source_file -> $target_file"
+    echo "Linked $target_file -> $source_file"
 }
 
 install_keyd() {
@@ -86,6 +86,14 @@ fi
 # Fish
 if command -v fish >/dev/null 2>&1; then
   move_and_link_file "$HOME/.config/fish/config.fish" "$SCRIPT_DIR/config.fish"
+
+  if command -v docker &>/dev/null; then
+    mkdir -p ~/.config/fish/completions
+    docker completion fish > ~/.config/fish/completions/docker.fish
+  else
+    echo "Docker not found, no completion installed"
+  fi
+
 else
   echo "Fish is not installed!"
 fi
