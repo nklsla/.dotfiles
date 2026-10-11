@@ -86,6 +86,7 @@ fi
 # Fish
 if command -v fish >/dev/null 2>&1; then
   move_and_link_file "$HOME/.config/fish/config.fish" "$SCRIPT_DIR/config.fish"
+  move_and_link_file "$HOME/.config/fish/functions/ssh.fish" "$SCRIPT_DIR/functions/ssh.fish"
 
   if command -v docker &>/dev/null; then
     mkdir -p ~/.config/fish/completions
@@ -96,6 +97,13 @@ if command -v fish >/dev/null 2>&1; then
 
 else
   echo "Fish is not installed!"
+fi
+
+# Konsole host colorschemes (used by ssh LocalCommand per host)
+if command -v konsole >/dev/null 2>&1; then
+  for scheme in HostBlue HostGreen HostRed; do
+    move_and_link_file "$HOME/.local/share/konsole/$scheme.colorscheme" "$SCRIPT_DIR/konsole/$scheme.colorscheme"
+  done
 fi
 
 # Vim

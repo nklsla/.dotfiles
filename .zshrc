@@ -47,8 +47,17 @@ ssh-add -q /home/nkls/.ssh/github
 #xmodmap -e "keycode 66 = End"
 
 # SSH custom colors
-# Set colors in ~/.ssh/config
-ssh() {/usr/bin/ssh "$@"; konsoleprofile ColorScheme=Breath  }
+# Set colors in ~/.ssh/config (konsole tab styling via LocalCommand);
+# restore the default scheme after the session ends.
+ssh() {
+    /usr/bin/ssh "$@"
+    local st=$?
+    # konsoleprofile talks to konsole via stdout escape codes; only run inside konsole
+    if [ -n "${KONSOLE_DBUS_SESSION:-}" ]; then
+        konsoleprofile 'ColorScheme=Breath;TabColor=#1E2229' 2>/dev/null
+    fi
+    return $st
+}
 
 # Sudoedit
 export EDITOR=vim
