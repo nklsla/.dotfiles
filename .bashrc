@@ -138,15 +138,12 @@ if commadn -v kubectl >/dev/null 2>&1;then
 fi
 # SSH
 eval "$(ssh-agent)" 1>/dev/null
-# Loop through all files in the directory
-for file in ~/.ssh/*; do
-  # Check if the file does not end with .pub
-  if [[ ! $file == *.pub ]] && [[ ! $file == *config ]] && [[ ! $file == *known_hosts* ]]; then
-    # Add the file to the SSH agent
-    ssh-add "$file"
-    # ssh-add -q "$file"
-  fi
+# Add every private key that has a matching .pub file
+for pub in ~/.ssh/*.pub; do
+  key="${pub%.pub}"
+  [[ -f $key ]] && ssh-add "$key"
 done
+unset pub key
 
 # Docker
 #if [[ $commands[docker] ]]; then
