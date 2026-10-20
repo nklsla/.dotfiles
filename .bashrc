@@ -137,17 +137,19 @@ if commadn -v kubectl >/dev/null 2>&1;then
 
 fi
 # SSH
-eval "$(ssh-agent)" 1>/dev/null
-# Add every private key that has a matching .pub file
-for pub in ~/.ssh/*.pub; do
-  key="${pub%.pub}"
-  [[ -f $key ]] && ssh-add "$key"
-done
-unset pub key
+if [[ ! -S $SSH_AUTH_SOCK ]]; then
+  eval "$(ssh-agent)" 1>/dev/null
+  # Add every private key that has a matching .pub file
+  for pub in ~/.ssh/*.pub; do
+    key="${pub%.pub}"
+    [[ -f $key ]] && ssh-add "$key"
+  done
+  unset pub key
+fi
 
 # Docker
 #if [[ $commands[docker] ]]; then
-if commadn -v docker >/dev/null 2>&1;then
+if command -v docker >/dev/null 2>&1;then
   alias d=docker
   source ~/.dotfiles/.dockerautocomplete_bash
 fi
