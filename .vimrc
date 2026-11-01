@@ -6,9 +6,15 @@ set tabstop=2
 set shiftwidth=2
 set autoindent
 set scrolloff=8
-set timeoutlen=600
-:colorscheme murphy
+set timeoutlen=100
+
+" Filetype aware syntax coloring
+filetype plugin indent on
+syntax enable
+
+:colorscheme desert
 :filetype on
+
 let g:netrw_altv=1
 let g:netrw_liststyle=3
 let g:netrw_winsize=80
@@ -33,6 +39,11 @@ vnoremap p "_dp
 
 " Escape insert mode
 inoremap jj <esc>
+
+" Alt+Backspace deletes the previous word (Konsole sends Alt as ESC + key,
+" so map both the true-Meta form and the ESC-prefixed form)
+inoremap <M-BS> <C-w>
+inoremap <Esc><BS> <C-w>
 
 " Reverse-indent, dent?
 inoremap <S-Tab> <C-d>
